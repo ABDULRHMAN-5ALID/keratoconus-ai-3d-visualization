@@ -28,7 +28,7 @@ This project demonstrates an AI-based pipeline for detecting Keratoconus from co
 
 ### Sample Inputs
 ![Normal](normal_cornea.png)
-![Keratoconus](keratoconus_cornea.png)
+![Keratoconus](Keratoconus_cornea.png)
 
 ---
 
