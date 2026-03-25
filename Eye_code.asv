@@ -1,0 +1,57 @@
+clc;
+clear;
+close all;
+
+%% Read images
+img1 = imread('Normal cornea.png');
+img2 = imread('Keratoconus cornea.png');
+
+%% Resize
+img1 = imresize(img1, [400 400]);
+img2 = imresize(img2, [400 400]);
+
+%% Convert to HSV
+hsv1 = rgb2hsv(img1);
+hsv2 = rgb2hsv(img2);
+
+Z1 = hsv1(:,:,3);
+Z2 = hsv2(:,:,3);
+
+%% Smooth
+Z1 = imgaussfilt(Z1, 2);
+Z2 = imgaussfilt(Z2, 2);
+
+%% 🔥 Generate dome shape
+n = size(Z1,1);
+[x,y] = meshgrid(linspace(-1,1,n), linspace(-1,1,n));
+r = sqrt(x.^2 + y.^2);
+
+dome = sqrt(1 - r.^2);
+dome(r>1) = NaN;
+
+%% 🔥 دمج اللون مع القبة
+Z1 = dome .* Z1;
+Z2 = dome .* Z2;
+
+%% Plot
+figure('Color','w','Position',[100 100 1200 500]);
+
+subplot(1,2,1)
+surf(Z1, 'EdgeColor','none');
+colormap jet
+title('Normal Cornea (Realistic)')
+axis off
+view(45,30)
+shading interp
+lighting gouraud
+camlight
+
+subplot(1,2,2)
+surf(Z2, 'EdgeColor','none');
+colormap jet
+title('Keratoconus Cornea (Realistic)')
+axis off
+view(45,30)
+shading interp
+lighting gouraud
+camlight
