@@ -26,10 +26,11 @@ This project demonstrates an AI-based pipeline for detecting Keratoconus from co
 ### 3D Comparison
 ![3D](cornea_3D_final.png)
 
-### Sample Inputs
-![Normal](normal_cornea.png)
-![Keratoconus](Keratoconus_cornea.png)
 
+
+| Normal Cornea | Keratoconus Cornea |
+|--------------|-------------------|
+| ![](Normal_cornea.png) | ![](Keratoconus_cornea.png) |
 ---
 
 ## 🔬 Methodology
